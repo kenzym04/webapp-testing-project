@@ -70,4 +70,20 @@ test.describe('API Tests', () => {
     });
     expect(res.status()).toBe(404);
   });
+
+  test('Very long username and password', async ({ request }) => {
+  const longString = 'a'.repeat(1000);
+  const res = await request.post(`${baseURL}/api/login`, {
+    data: { username: longString, password: longString },
+  });
+  expect(res.status()).toBeGreaterThanOrEqual(400);
+});
+
+  test('Username with special characters', async ({ request }) => {
+    const res = await request.post(`${baseURL}/api/login`, {
+      data: { username: 'user!@#$', password: 'password' },
+    });
+    expect(res.status()).toBe(401);
+  });
+
 });

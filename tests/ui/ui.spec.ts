@@ -65,4 +65,40 @@ test.describe('Todo App UI', () => {
     await page.click('button:has-text("Add")');
     await expect(page.locator('li', { hasText: itemText })).toHaveCount(1);
   });
+
+  test.describe('Todo App - Edge Case UI Tests', () => {
+  test('should not add an empty or whitespace-only todo', async ({ page }) => {
+    const countBefore = await page.locator('li').count();
+    await page.fill('input[placeholder="New item"]', '   ');
+    await page.getByRole('button', { name: 'Add' }).click();
+    const countAfter = await page.locator('li').count();
+    expect(countAfter).toBe(countBefore);
+  });
+
+  test('should handle a very long todo item', async ({ page }) => {
+    const longText = 'A'.repeat(1000);
+    await page.fill('input[placeholder="New item"]', longText);
+    await page.getByRole('button', { name: 'Add' }).click();
+    const addedItem = await page.locator('li').last();
+    await expect(addedItem).toContainText(longText);
+  });
+
+  test('should safely display special characters in todo item', async ({ page }) => {
+    const xss = `<img src=x onerror=alert("XSS") />`;
+    await page.fill('input[placeholder="New item"]', xss);
+    await page.getByRole('button', { name: 'Add' }).click();
+    const addedItem = await page.locator('li').last();
+    await expect(addedItem).toContainText(xss);
+  });
+
+  test('should allow deleting the last item without errors', async ({ page }) => {
+    const uniqueText = `Only item ${Date.now()}`;
+    await page.fill('input[placeholder="New item"]', uniqueText);
+    await page.getByRole('button', { name: 'Add' }).click();
+    await page.locator('li', { hasText: uniqueText }).getByRole('button', { name: 'Delete' }).click();
+    await expect(page.locator('li', { hasText: uniqueText })).toHaveCount(0);
+  });
+
+});
+
 });
