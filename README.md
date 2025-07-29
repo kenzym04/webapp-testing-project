@@ -153,6 +153,7 @@ See `.github/workflows/playwright.yml` for the workflow configuration.
   npx nyc report --reporter=html
   ```
 - Coverage reports are output to `backend/coverage/`.
+- Coverage HTML: `D:\Remwaste\webapp-testing-project\backend\coverage\lcov-report\src\routes\index.html`
 
 ## Conclusion
 
