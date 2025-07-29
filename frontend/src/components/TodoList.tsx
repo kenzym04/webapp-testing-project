@@ -40,6 +40,7 @@ export default function TodoList() {
   }
 
   function addItem() {
+     if (!text.trim()) return;
     fetch('/items', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
