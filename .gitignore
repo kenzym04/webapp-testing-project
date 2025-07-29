@@ -1,0 +1,57 @@
+# Node.js dependencies
+**/node_modules/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Diagnostic reports
+report.[0-9]*.[0-9]*.[0-9]*.json
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# dotenv environment files
+.env
+.env.*.local
+
+# Coverage directory
+coverage/
+.nyc_output/
+lcov-report/
+lcov.info
+
+# Playwright test output
+test-results/
+playwright-report/
+allure-results/
+
+# Compiled source
+dist/
+build/
+
+# IDE & system files
+.vscode/
+.DS_Store
+Thumbs.db
+
+# TypeScript build outputs
+*.tsbuildinfo
+
+# OS-specific files
+*.swp
+
+# GitHub workflows cache (if any)
+.github/workflows/*.log
+
+# Postman collection artifacts (if generated at runtime)
+webapp-api.postman_collection.json
+
+# Lockfiles (optional, if you want to avoid locking dependencies in git)
+# package-lock.json
+# yarn.lock
