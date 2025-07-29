@@ -91,6 +91,7 @@ webapp-testing-project
 │   ├── package-lock.json
 │   ├── tsconfig.json
 │   └── README.md
+├── .gitignore
 ├── tests
 │   ├── api
 │   │   └── api.spec.ts
