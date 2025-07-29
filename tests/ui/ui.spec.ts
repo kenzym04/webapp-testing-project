@@ -7,6 +7,12 @@ function uniqueText(base: string) {
 test.describe('Todo App UI', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('http://localhost:3000');
+    // Fill login form
+    await page.fill('input[placeholder="Username"]', 'admin');
+    await page.fill('input[placeholder="Password"]', 'password');
+    await page.click('button:has-text("Login")');
+    // Wait for todo input to appear
+    await page.waitForSelector('input[placeholder="New item"]');
   });
 
   test('Add a new item', async ({ page }) => {

@@ -7,10 +7,37 @@ export default function TodoList() {
   const [text, setText] = useState('');
   const [editId, setEditId] = useState<number | null>(null);
   const [editText, setEditText] = useState('');
+  const [token, setToken] = useState<string | null>(null);
+  const [loginUser, setLoginUser] = useState('');
+  const [loginPass, setLoginPass] = useState('');
+  const [loginError, setLoginError] = useState('');
 
+  // Only fetch items if logged in
   useEffect(() => {
-    fetch('/items').then(res => res.json()).then(setItems);
-  }, []);
+    if (token) {
+      fetch('/items')
+        .then(res => res.json())
+        .then(setItems);
+    }
+  }, [token]);
+
+  function handleLogin(e: React.FormEvent) {
+    e.preventDefault();
+    setLoginError('');
+    fetch('/api/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username: loginUser, password: loginPass }),
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.success) {
+          setToken(data.token || 'dummy-token'); // Use token if returned, else dummy
+        } else {
+          setLoginError(data.message || 'Login failed');
+        }
+      });
+  }
 
   function addItem() {
     fetch('/items', {
@@ -50,6 +77,32 @@ export default function TodoList() {
       .then(() => setItems(items.filter(i => i.id !== id)));
   }
 
+  // Show login form if not logged in
+  if (!token) {
+    return (
+      <form onSubmit={handleLogin}>
+        <h2>Login</h2>
+        <input
+          type="text"
+          placeholder="Username"
+          value={loginUser}
+          onChange={e => setLoginUser(e.target.value)}
+          required
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={loginPass}
+          onChange={e => setLoginPass(e.target.value)}
+          required
+        />
+        <button type="submit">Login</button>
+        {loginError && <div style={{ color: 'red' }}>{loginError}</div>}
+      </form>
+    );
+  }
+
+  // Show todo list if logged in
   return (
     <div>
       <input

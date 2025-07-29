@@ -7,10 +7,10 @@ app.use(bodyParser.json());
 
 let users = [{ username: 'admin', password: 'password' }];
 
-app.post('/login', (req, res) => {
+app.post('/api/login', (req, res) => {
   const { username, password } = req.body;
   const user = users.find(u => u.username === username && u.password === password);
-  if (user) return res.json({ success: true });
+  if (user) return res.json({ success: true, token: 'dummy-token' });
   res.status(401).json({ success: false, message: 'Invalid credentials' });
 });
 
