@@ -4,7 +4,7 @@ const baseURL = 'http://localhost:5000';
 
 test.describe('API Tests', () => {
   test('POST /login - valid credentials', async ({ request }) => {
-    const res = await request.post(`${baseURL}/login`, {
+    const res = await request.post(`${baseURL}/api/login`, {
       data: { username: 'admin', password: 'password' }
     });
     expect(res.ok()).toBeTruthy();
@@ -13,7 +13,7 @@ test.describe('API Tests', () => {
   });
 
   test('POST /login - invalid credentials', async ({ request }) => {
-    const res = await request.post(`${baseURL}/login`, {
+    const res = await request.post(`${baseURL}/api/login`, {
       data: { username: 'admin', password: 'wrong' }
     });
     expect(res.status()).toBe(401);
