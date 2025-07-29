@@ -29,7 +29,7 @@ lcov.info
 # Playwright test output
 test-results/
 playwright-report/
-allure-results/
+
 
 # Compiled source
 dist/
