@@ -1,0 +1,128 @@
+{
+  "info": {
+    "name": "Webapp Testing Project API",
+    "_postman_id": "d1e2f3a4-b5c6-7890-1234-56789abcdef0",
+    "description": "API tests for the webapp-testing-project backend",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "POST /api/login - valid credentials",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{ \"username\": \"admin\", \"password\": \"password\" }"
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/login",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "login"]
+        }
+      }
+    },
+    {
+      "name": "POST /api/login - invalid credentials",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{ \"username\": \"admin\", \"password\": \"wrong\" }"
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/login",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "login"]
+        }
+      }
+    },
+    {
+      "name": "GET /items",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5000/items",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["items"]
+        }
+      }
+    },
+    {
+      "name": "POST /items",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{ \"text\": \"Playwright Item\" }"
+        },
+        "url": {
+          "raw": "http://localhost:5000/items",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["items"]
+        }
+      }
+    },
+    {
+      "name": "PUT /items/:id",
+      "request": {
+        "method": "PUT",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{ \"text\": \"Edited Item\" }"
+        },
+        "url": {
+          "raw": "http://localhost:5000/items/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["items", "1"]
+        }
+      }
+    },
+    {
+      "name": "DELETE /items/:id",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5000/items/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["items", "1"]
+        }
+      }
+    },
+    {
+      "name": "PUT /items/:id - negative (not found)",
+      "request": {
+        "method": "PUT",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{ \"text\": \"Should Fail\" }"
+        },
+        "url": {
+          "raw": "http://localhost:5000/items/99999",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["items", "99999"]
+        }
+      }
+    }
+  ]
+}

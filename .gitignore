@@ -54,7 +54,7 @@ Thumbs.db
 .github/workflows/*.log
 
 # Postman collection artifacts (if generated at runtime)
-webapp-api.postman_collection.json
+//webapp-api.postman_collection.json
 
 # Lockfiles (optional, if you want to avoid locking dependencies in git)
 # package-lock.json

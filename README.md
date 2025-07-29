@@ -2,6 +2,13 @@
 
 This project is an automated testing setup for a simple web application consisting of a React frontend and a Node.js backend API. The project includes tests for both the frontend and backend components, ensuring that the application functions as expected.
 
+## Demo Credentials
+
+- **Username:** admin
+- **Password:** password
+
+Use these credentials to log in via the UI or API tests.
+
 ## Project Structure
 
 ```
@@ -23,6 +30,7 @@ webapp-testing-project
 │   │   └── index.html
 │   ├── src
 │   │   ├── components
+|   |   |   └── Login.tsx
 │   │   │   └── TodoList.tsx
 │   │   ├── App.tsx
 │   │   ├── index.tsx
